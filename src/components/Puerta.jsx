@@ -39,6 +39,17 @@ const Puerta = ({ width = '200px', height = '250px', onClick }) => {
     position: 'absolute',
   };
 
+  const fetchdata=async()=>{
+    const data = await axios.get('http://localhost:3000/event')
+      .then(data => { return data.data })
+     
+      if (data.tipo === "puerta"){
+        setIsOriginalImage(data.state ? !isOriginalImage : isOriginalImage);
+      }
+
+  }
+  fetchdata()
+
   const handleMouseEnter = (e) => {
     e.currentTarget.style.transform = 'scale(1.05)';
   };

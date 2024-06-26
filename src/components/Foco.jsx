@@ -48,6 +48,16 @@ const Foco = () => {
     backgroundPosition: 'center',
   };
 
+  const fetchdata=async()=>{
+    const data = await axios.get('http://localhost:3000/event')
+      .then(data => { return data.data })
+     
+      if (data.tipo === "foco"){
+        setIsOn(data.state)
+      }
+
+  }
+
   const estilosLuz = {
     width: '10px',
     height: '60px',

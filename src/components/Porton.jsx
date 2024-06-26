@@ -49,7 +49,16 @@ const Porton = () => {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
   };
+  const fetchdata=async()=>{
+    const data = await axios.get('http://localhost:3000/event')
+      .then(data => { return data.data })
+     
+      if (data.tipo === "porton"){
+        setIsOriginalImage(data.state ? !isOriginalImage : isOriginalImage);
+      }
 
+  }
+  fetchdata()
   return (
     <button style={estiloBoton} onClick={handleClick}>
       {/* Puedes agregar texto u otros elementos dentro del botón */}
