@@ -4,7 +4,10 @@ const Foco = () => {
   const [isOn, setIsOn] = useState(false);
 
   const handleClick = () => {
-    setIsOn(!isOn);
+    setIsOn(!isOn);  
+    const data = {"state":isOpen, "tipo":Foco}
+    axios.post('http://localhost:3000/event', data)
+    .then(data => console.log(data.data));
     // Aquí puedes realizar más acciones según el estado del foco
   };
 

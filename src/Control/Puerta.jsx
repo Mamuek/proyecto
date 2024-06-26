@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 
 const Puerta = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+// ====================================================================================
   const toggleDoor = () => {
     setIsOpen(!isOpen);
-    
+    const data = {"state":isOpen, "tipo":Puerta}
+axios.post('http://localhost:3000/event', data)
+.then(data => console.log(data.data));
   };
-
+// ====================================================================================
   const styles = {
     width: '50px',
     height: '50px',

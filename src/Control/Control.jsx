@@ -8,11 +8,11 @@ const Control = () => {
   
   const containerStyle = {
     border: '0px solid red',
-    padding: '10px',
+    padding: '20px',
     width: '250px',  // Ancho de 50px
     height: '55px',
     marginLeft: '20.2%', 
-    marginTop: '-48.5%', // Alto de 60px
+    marginTop: '0%', // Alto de 60px
   };
 
   return (

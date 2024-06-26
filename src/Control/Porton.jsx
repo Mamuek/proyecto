@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 
 const Porton = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+// ====================================================================================
   const handleClick = () => {
     setIsOpen(!isOpen);
    
+    const data = {"state":isOpen, "tipo":Porton}
+axios.post('http://localhost:3000/event', data)
+.then(data => console.log(data.data));
+
   };
+  // ====================================================================================
 
   const styles = {
     width: '50px',

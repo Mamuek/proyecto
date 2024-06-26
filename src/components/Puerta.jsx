@@ -1,16 +1,33 @@
-// src/Puerta.js
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Puerta = ({ width = '200px', height = '250px', onClick }) => {
   const [isClicked, setIsClicked] = useState(false);
+  const [imageUrl, setImageUrl] = useState('https://th.bing.com/th/id/OIP.ryZIWmT_DI8h5ZZHMkzq4gHaJn?rs=1&pid=ImgDetMain');
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+ // ====================================================================================
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/event');
+      const data = response.data;
+
+     
+      const imageUrlFromApi = data.imageUrl;
+      setImageUrl(imageUrlFromApi);
+    } catch (error) {
+      console.error('Error al obtener los datos:', error);
+    }
+  };
+ // ====================================================================================
   const buttonStyles = {
     marginLeft: '22%',
     marginTop: '23%',
     width: width,
     height: height,
-    backgroundImage: 'url(https://th.bing.com/th/id/OIP.ryZIWmT_DI8h5ZZHMkzq4gHaJn?rs=1&pid=ImgDetMain)',
+    backgroundImage: `url("${imageUrl}")`,
     backgroundSize: 'contain',
     border: '0px solid black',
     cursor: 'pointer',
@@ -19,6 +36,7 @@ const Puerta = ({ width = '200px', height = '250px', onClick }) => {
     justifyContent: 'center',
     transition: 'transform 0.2s ease',
     transform: isClicked ? 'scale(0.9)' : 'scale(1)',
+    position: 'absolute',
   };
 
   const handleMouseEnter = (e) => {
